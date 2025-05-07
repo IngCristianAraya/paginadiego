@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';      // ✅ Navbar funcionando
 import ProductCard from '../components/ProductCard';
 import SkeletonCard from '../components/SkeletonCard';
-import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';    // ✅ Hero importado
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -10,14 +11,13 @@ const Home = () => {
   // Simulamos la llamada a la API (luego lo reemplazaremos por la conexión real)
   useEffect(() => {
     const fetchProducts = async () => {
-      // Simulamos una llamada asíncrona
       setTimeout(() => {
         const mockProducts = [
           {
             id: 1,
             name: 'Producto 1',
             price: '29.99',
-            images: [{ src: 'https://picsum.photos/id/101/300/300' }],
+            images: [{ src: "/foto_auto_verde.jpg" }],
           },
           {
             id: 2,
@@ -59,23 +59,29 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-800 text-center">Nuestros Productos</h1>
+    <>
+      <Navbar /> {/* ✅ Navbar visible */}
+      <Hero />   {/* ✅ Añadimos el Hero aquí */}
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-800 text-center">
+          Nuestros Productos
+        </h1>
 
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, index) => (
-            <SkeletonCard key={index} />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
-    </div>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

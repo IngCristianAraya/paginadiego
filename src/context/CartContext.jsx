@@ -4,8 +4,9 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Cargar carrito desde localStorage al iniciar
+  // Cargar carrito desde localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -13,11 +14,12 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
-  // Guardar carrito en localStorage cuando cambie
+  // Guardar carrito en localStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
+  // Añadir producto al carrito
   const addToCart = (product) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
@@ -30,14 +32,21 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Eliminar producto
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // Vaciar carrito
   const clearCart = () => setCart([]);
 
+  // Total de productos
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + item.qty, 0);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, getTotalItems, isOpen, setIsOpen }}>
       {children}
     </CartContext.Provider>
   );
