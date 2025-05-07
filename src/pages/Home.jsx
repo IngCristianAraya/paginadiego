@@ -5,6 +5,7 @@ import SkeletonCard from '../components/SkeletonCard';
 import Hero from '../components/Hero';
 import SocialLinks from '../components/SocialLinks';
 import Categories from '../components/Categories'; 
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -125,7 +126,9 @@ const Home = () => {
     </div>
   </div>
 </section>
+<Footer />
     </>
+    
   );
 };
 
