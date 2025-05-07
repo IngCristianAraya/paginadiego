@@ -9,7 +9,7 @@ import App from './App';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider> {/* ✅ Aquí envuelves todo */}
+      <ThemeProvider> {/* ✅ Agrega este envoltorio */}
         <CartProvider>
           <App />
         </CartProvider>

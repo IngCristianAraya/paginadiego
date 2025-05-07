@@ -5,25 +5,18 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Cargar tema desde localStorage
+  // Aplicar clase 'dark' al html
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setDarkMode(true);
+    if (darkMode) {
       document.documentElement.classList.add('dark');
-    }
-  }, []);
-
-  // Cambiar tema y guardar en localStorage
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
     }
+  }, [darkMode]);
+
+  // Función para cambiar entre modos
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
 
   return (

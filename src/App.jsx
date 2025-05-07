@@ -3,6 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart'; // ✅ Importa el componente
+import Contact from './pages/Contacto'; // ✅ Importa la nueva página
 
 const App = () => {
   return (
