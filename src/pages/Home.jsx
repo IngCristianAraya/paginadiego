@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard';
 import SkeletonCard from '../components/SkeletonCard';
 import Hero from '../components/Hero';
 import SocialLinks from '../components/SocialLinks';
+import Categories from '../components/Categories'; 
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -36,7 +37,10 @@ const Home = () => {
       <div className="mb-32">
         <Hero />
       </div>
+      {/* Sección de categorías */}
+      <Categories /> {/* ✅ Aquí usamos el nuevo componente */}
 
+      
       {/* Productos */}
       <div className="container mx-auto px-4 mb-32" id="products">
         <h1 className="text-3xl md:text-4xl font-extrabold mb-14 text-gray-800 dark:text-white text-center">
@@ -57,6 +61,10 @@ const Home = () => {
           </div>
         )}
       </div>
+
+
+
+
 
       {/* Sección de contacto */}
       <section className="container mx-auto px-4 mb-32">
